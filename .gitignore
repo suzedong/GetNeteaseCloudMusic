@@ -1,0 +1,9 @@
+/build
+/dist
+
+.idea
+.vscode
+.venv
+
+/poetry.lock
+/pyproject.toml
