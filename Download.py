@@ -2,7 +2,6 @@ import requests
 import os
 import GetList
 import Utils
-import time
 
 global file_path
 
