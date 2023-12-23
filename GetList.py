@@ -8,11 +8,11 @@ def get_list(input_value, page_number, index_value):
     data = {
         'keywords': input_value,
         'limit': index_value,
-        'offset': page_number * index_value,
+        'offset': page_number * index_value
     }
     # cloudsearch?keywords = 海阔天空 & limit = 10 & offset = 0
     # 发送POST请求
-    response = requests.get(Config.url + 'cloudsearch', headers=Config.headers, data=data)
+    response = requests.get(Config.url + f'cloudsearch?keywords={input_value}&limit={index_value}&offset={page_number * index_value}&timestamp={int(time.time_ns())}')
 
     # 将响应数据解析为JSON格式
     json_data = response.json()
@@ -29,7 +29,7 @@ def get_list(input_value, page_number, index_value):
 
 
 def get_song(song_id):
-    # print(int(time.time_ns()))
+    # print(song_id)
     # 构造请求数据
     data = {
         'id': song_id,

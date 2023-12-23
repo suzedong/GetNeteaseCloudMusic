@@ -20,14 +20,14 @@ if len(sys.argv) >= 4:
     root_dir = sys.argv[4]
 else:
     # 默认值
-    input_value = None  # 'BLACKPINK'
+    input_value = None  # '汽车音乐'
     page_value = None  # '1‘ 多少页
     index_value = None  # '10' 每页多少条
     root_dir = None  # os.path.expanduser('~/Downloads/GetMusic')  # 默认为用户的下载文件夹
 
     # 提示用户输入参数并使用默认值
     if not input_value:
-        input_value = Utils.input_colored("请输入搜索关键词（默认为'BLACKPINK'）：", "32;4") or 'BLACKPINK'
+        input_value = Utils.input_colored("请输入搜索关键词（默认为'汽车音乐'）：", "32;4") or '汽车音乐'
         print(f"您输入的文本是：{input_value}")
     if not page_value:
         page_value = Utils.input_colored("请输入要下载的页数（指定页数，如：'10'，默认为'1'）：", "32;4") or '1'

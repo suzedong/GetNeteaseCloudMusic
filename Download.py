@@ -27,7 +27,9 @@ def get_file(songs, root_dir, page_number):
 
         name = song['name']
         song_id = song['id']
-        ar_name = song['ar'][0]['name']
+        names = [i.get('name', '') for i in song.get('ar', [])]
+        result = ','.join(names)
+        ar_name = result
         # print(f"第{page_number}页-第{index}首: {ar_name} - {name} - {song_id}")
 
         data_array = GetList.get_song(song_id)
@@ -43,7 +45,7 @@ def get_file(songs, root_dir, page_number):
         try:
             file_path = Utils.download_file(url, ar_name, name, root_dir)
 
-            print(f"第{page_number}页-第{index + 1}首-已下载文件: {file_path} "
+            print(f"第{page_number}页-第{index}首-已下载文件: {file_path} "
                   f"码率: {br/1000}K 大小: {round(size/1024/1024, 2)}M 时长: {round(song_time/1000/60, 2)}分钟")
             # 判断文件大小
             file_size = os.path.getsize(file_path)
@@ -53,8 +55,8 @@ def get_file(songs, root_dir, page_number):
                 # 检查并删除空文件夹
                 check_and_remove_empty_folder(os.path.dirname(file_path))
         except requests.exceptions.HTTPError as e:
-            Utils.print_colored(f"第{page_number}页-第{index + 1}首-下载文件失败: {e}", "31")
+            Utils.print_colored(f"第{page_number}页-第{index}首-下载文件失败: {e}", "31")
             # 删除下载过程中产生的文件
             if os.path.exists(file_path):
                 os.remove(file_path)
-                Utils.print_colored(f"第{page_number}页-第{index + 1}首-删除文件: {file_path}", "31")
+                Utils.print_colored(f"第{page_number}页-第{index}首-删除文件: {file_path}", "31")
