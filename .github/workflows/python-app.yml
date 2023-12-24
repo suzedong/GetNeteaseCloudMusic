@@ -34,14 +34,14 @@ jobs:
 
     - name: Compile and pack # 编译打包
       run: |
-        pyinstaller -F --collect-all pyfiglet GetMusic.py
-        pyinstaller -F --icon=AppIcon.appiconset/512.png --noconfirm --windowed --collect-all pyfiglet GetMusicGUI.py
+        pyinstaller -F --collect-all pyfiglet GetNeteaseCloudMusic.py
+        pyinstaller -F --icon=AppIcon.appiconset/512.png --noconfirm --windowed --collect-all pyfiglet GetNeteaseCloudMusicGUI.py
         ls -l dist
 
     - name: Archive .app files # 上传打包文件
       uses: actions/upload-artifact@v3.1.3
       with:
-        name: GetMusicGUI-${{ runner.os }}
+        name: GetNeteaseCloudMusicGUI-${{ runner.os }}
         path: dist/*
 
     - name: Create Release # 创建发布
@@ -59,7 +59,7 @@ jobs:
     - name: Download .app files # 下载打包文件
       uses: actions/download-artifact@v3.0.2
       with:
-        name: GetMusicGUI-${{ runner.os }}
+        name: GetNeteaseCloudMusicGUI-${{ runner.os }}
         path: artifact
 
     - name: List files in workspace # 查看工作空间文件
@@ -67,8 +67,8 @@ jobs:
         ls -l ${{ github.workspace }}
         ls -l dist
         ls -l artifact
-        mv artifact/GetMusic artifact/GetMusic-${{ runner.os }}
-        mv artifact/GetMusicGUI artifact/GetMusicGUI-${{ runner.os }}
+        mv artifact/GetNeteaseCloudMusic artifact/GetNeteaseCloudMusic-${{ runner.os }}
+        mv artifact/GetNeteaseCloudMusicGUI artifact/GetNeteaseCloudMusicGUI-${{ runner.os }}
         ls -l artifact
 
     - name: Upload .app files to Release # 上传打包文件
@@ -101,20 +101,20 @@ jobs:
 
       - name: Compile and pack
         run: |
-          pyinstaller -F --collect-all pyfiglet GetMusic.py
-          pyinstaller -F --icon=AppIcon.appiconset/MyIcon.icns --noconfirm --windowed --collect-all pyfiglet GetMusicGUI.py
+          pyinstaller -F --collect-all pyfiglet GetNeteaseCloudMusic.py
+          pyinstaller -F --icon=AppIcon.appiconset/MyIcon.icns --noconfirm --windowed --collect-all pyfiglet GetNeteaseCloudMusicGUI.py
           ls -l dist
 
       - name: Archive .app files
         uses: actions/upload-artifact@v3.1.3
         with:
-          name: GetMusicGUI-${{ runner.os }}
+          name: GetNeteaseCloudMusicGUI-${{ runner.os }}
           path: dist/*
 
       - name: Download artifacts
         uses: actions/download-artifact@v2
         with:
-          name: GetMusicGUI-${{ runner.os }}
+          name: GetNeteaseCloudMusicGUI-${{ runner.os }}
           path: artifact
 
       - name: List files in workspace
@@ -122,11 +122,11 @@ jobs:
           ls -l ${{ github.workspace }}
           ls -l dist
           ls -l artifact
-          mv artifact/GetMusic artifact/GetMusic-${{ runner.os }}
-          mv artifact/GetMusicGUI artifact/GetMusicGUI-${{ runner.os }}
-          mv artifact/GetMusicGUI.app artifact/GetMusicGUI-${{ runner.os }}.app
-          zip -r artifact/GetMusicGUI-${{ runner.os }}.zip artifact/GetMusicGUI-${{ runner.os }}.app
-          rm -rf artifact/GetMusicGUI-${{ runner.os }}.app
+          mv artifact/GetNeteaseCloudMusic artifact/GetNeteaseCloudMusic-${{ runner.os }}
+          mv artifact/GetNeteaseCloudMusicGUI artifact/GetNeteaseCloudMusicGUI-${{ runner.os }}
+          mv artifact/GetNeteaseCloudMusicGUI.app artifact/GetNeteaseCloudMusicGUI-${{ runner.os }}.app
+          zip -r artifact/GetNeteaseCloudMusicGUI-${{ runner.os }}.zip artifact/GetNeteaseCloudMusicGUI-${{ runner.os }}.app
+          rm -rf artifact/GetNeteaseCloudMusicGUI-${{ runner.os }}.app
           ls -l artifact
 
       - name: Upload .app files to Release
@@ -159,20 +159,20 @@ jobs:
 
       - name: Compile and pack
         run: |
-          pyinstaller -F --collect-all pyfiglet GetMusic.py
-          pyinstaller -F --icon=AppIcon.appiconset/MyIco.ico --noconfirm --windowed --collect-all pyfiglet GetMusicGUI.py
+          pyinstaller -F --collect-all pyfiglet GetNeteaseCloudMusic.py
+          pyinstaller -F --icon=AppIcon.appiconset/MyIco.ico --noconfirm --windowed --collect-all pyfiglet GetNeteaseCloudMusicGUI.py
           ls -l dist
 
       - name: Archive .app files
         uses: actions/upload-artifact@v3.1.3
         with:
-          name: GetMusicGUI-${{ runner.os }}
+          name: GetNeteaseCloudMusicGUI-${{ runner.os }}
           path: dist/*
 
       - name: Download artifacts
         uses: actions/download-artifact@v2
         with:
-          name: GetMusicGUI-${{ runner.os }}
+          name: GetNeteaseCloudMusicGUI-${{ runner.os }}
           path: artifact
 
       - name: List files in workspace
@@ -180,8 +180,8 @@ jobs:
           ls -l ${{ github.workspace }}
           ls -l dist
           ls -l artifact
-          mv artifact/GetMusic.exe artifact/GetMusic-${{ runner.os }}.exe
-          mv artifact/GetMusicGUI.exe artifact/GetMusicGUI-${{ runner.os }}.exe
+          mv artifact/GetNeteaseCloudMusic.exe artifact/GetNeteaseCloudMusic-${{ runner.os }}.exe
+          mv artifact/GetNeteaseCloudMusicGUI.exe artifact/GetNeteaseCloudMusicGUI-${{ runner.os }}.exe
           ls -l artifact
 
       - name: Upload .app files to Release
@@ -193,5 +193,5 @@ jobs:
           ls -l artifact
           $tag_name = "${{ github.ref }}" -replace '^refs/tags/', ''
           echo "Tag name: $tag_name"
-          gh release upload "$tag_name" .\artifact\GetMusicGUI-${{ runner.os }}.exe
-          gh release upload "$tag_name" .\artifact\GetMusic-${{ runner.os }}.exe
+          gh release upload "$tag_name" .\artifact\GetNeteaseCloudMusicGUI-${{ runner.os }}.exe
+          gh release upload "$tag_name" .\artifact\GetNeteaseCloudMusic-${{ runner.os }}.exe
