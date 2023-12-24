@@ -7,5 +7,7 @@
 
 /__pycache__
 
+GetNeteaseCloudMusic.spec
+GetNeteaseCloudMusicGUI.spec
 /poetry.lock
 /pyproject.toml
